@@ -10,6 +10,7 @@
 <link rel="stylesheet" href="{{ asset('assets/css/rtl/core.css') }}" />
 <link rel="stylesheet" href="{{ asset('assets/css/rtl/theme-default.css') }}" />
 <link rel="stylesheet" href="{{ asset('assets/css/demo.css') }}" />
+@stack('css')
 
 <!-- Vendors CSS -->
-<link rel="stylesheet" href="{{ asset('assets/css/perfect-scrollbar/perfect-scrollbar.css') }}" />
+<link rel="stylesheet" href="{{ asset('assets/libs/perfect-scrollbar/perfect-scrollbar.css') }}" />
