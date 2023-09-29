@@ -1,21 +1,6 @@
-<html lang="en">
+@extends('auth.layouts.index')
 
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Login Page." />
-    <meta name="keywords" content="-" />
-    <meta name="author" content="-" />
-    <title>Halo Smart</title>
-    @include('layouts.partials.css')
-    <link rel="stylesheet" href="{{ asset('assets/css/page-auth.css') }}" />
-    <link rel="stylesheet" href="{{ asset('assets/libs/typeahead-js/typeahead.css') }}" />
-    <link rel="stylesheet" href="{{ asset('assets/libs/formvalidation/dist/css/formValidation.min.css') }}" />
-</head>
-
-<body>
-    <!-- Content -->
+@section('content')
     <div class="container-xxl">
         <div class="authentication-wrapper authentication-basic container-p-y">
             <div class="authentication-inner">
@@ -24,10 +9,10 @@
                         <h4 class="mb-2">Welcome to Halo Smart! 👋</h4>
                         <p class="mb-4">Please sign-in to your account and start the adventure</p>
 
-                        <form id="formAuthentication" class="mb-3" action="index.html" method="POST">
+                        <form id="formAuth" class="mb-3">
                             <div class="mb-3">
-                                <label for="email" class="form-label">Email or Username</label>
-                                <input type="text" class="form-control" id="email" name="email-username"
+                                <label for="email" class="form-label">Email</label>
+                                <input type="text" class="form-control" id="email" name="email"
                                     placeholder="Enter your email or username" autofocus />
                             </div>
                             <div class="mb-3 form-password-toggle">
@@ -48,7 +33,8 @@
                                 </div>
                             </div>
                             <div class="mb-3">
-                                <button class="btn btn-primary d-grid w-100" type="submit">Sign in</button>
+                                <button class="btn btn-primary d-grid w-100" type="button" onclick="login()">Sign
+                                    in</button>
                             </div>
                         </form>
                     </div>
@@ -56,13 +42,19 @@
             </div>
         </div>
     </div>
+@endsection
 
-    @include('layouts.partials.js')
-    <script src="{{ asset('assets/libs/typeahead-js/typeahead.js') }}"></script>
-    <script src="{{ asset('assets/js/pages-auth.js') }}"></script>
-    <script src="{{ asset('assets/libs/formvalidation/dist/js/FormValidation.min.js') }}"></script>
-    <script src="{{ asset('assets/libs/formvalidation/dist/js/plugins/Bootstrap5.min.js') }}"></script>
-    <script src="{{ asset('assets/libs/formvalidation/dist/js/plugins/AutoFocus.min.js') }}"></script>
-</body>
-
-</html>
+@push('js')
+    <script>
+        async function login() {
+            const data = new FormData(formAuthentication);
+            const payload = Object.fromEntries(data.entries());
+            try {
+                const response = await axios.post('{{ route('auth.login') }}', payload);
+                window.location = '{{ route('dashboard') }}'
+            } catch (error) {
+                //TODO: SHOW FAILED ALERT
+            }
+        }
+    </script>
+@endpush
