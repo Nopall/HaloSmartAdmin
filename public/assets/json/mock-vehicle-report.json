@@ -1,0 +1,24 @@
+{
+    "data": [
+        {
+            "id": 1,
+            "manufactur": "Toyota",
+            "nickname": "Avanza",
+            "refueling": "IDR 500.000",
+            "expenses": "IDR 500.000",
+            "services": "IDR 500.000",
+            "incomes": "IDR 500.000",
+            "balance": "IDR 500.000"
+        },
+        {
+            "id": 2,
+            "manufactur": "Honda",
+            "nickname": "HRV",
+            "refueling": "IDR 1000.000",
+            "expenses": "IDR 500.000",
+            "services": "IDR 2000.000",
+            "incomes": "IDR 500.000",
+            "balance": "IDR 500.000"
+        }
+    ]
+}

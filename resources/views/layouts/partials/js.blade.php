@@ -10,3 +10,5 @@
 <script src="{{ asset('assets/js/menu.js') }}"></script>
 <script src="{{ asset('assets/js/main.js') }}"></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+@stack('js')
