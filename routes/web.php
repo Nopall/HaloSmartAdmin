@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AuthController;
+use App\Http\Controllers\Admin\CarController;
 use App\Http\Controllers\Admin\DashboardController;
 use Illuminate\Support\Facades\Route;
 
@@ -13,4 +14,8 @@ Route::group(['prefix' => 'auth'], function () {
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/', [DashboardController::class, 'index'])->name('index');
+
+    Route::group(['prefix' => 'master'], function () {
+        Route::get('/car', [CarController::class, 'index'])->name('car.list');
+    });
 });
