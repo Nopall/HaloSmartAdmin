@@ -11,19 +11,17 @@
 @endpush
 
 @section('content')
-    <div class="card">
+    <div>
+        <button class="btn btn-md btn-primary"><span class="fa fa-plus"></span> Create</button>
+    </div>
+    <div class="card mt-3">
         <div class="card-datatable table-responsive">
-            <table class="datatables-basic table border-top">
+            <table id="car-brand-table" class="display table table-striped">
                 <thead>
                     <tr>
-                        <th>id</th>
-                        <th>Manufacturer</th>
-                        <th>Nickname</th>
-                        <th>Refueling</th>
-                        <th>Expenses</th>
-                        <th>Services</th>
-                        <th>Incomes</th>
-                        <th>Balance</th>
+                        <th>Brand Name</th>
+                        <th>Logo</th>
+                        <th>Actions</th>
                     </tr>
                 </thead>
             </table>
@@ -31,7 +29,6 @@
     </div>
 @endsection
 
-<!--/ DataTable with Buttons -->
 @push('js')
     <script src="{{ asset('assets/libs/datatables-bs5/datatables-bootstrap5.js') }}"></script>
     <script src="{{ asset('assets/libs/moment/moment.js') }}"></script>
@@ -40,4 +37,28 @@
     <script src="{{ asset('assets/libs/formvalidation/dist/js/FormValidation.min.js') }}"></script>
     <script src="{{ asset('assets/libs/formvalidation/dist/js/plugins/Bootstrap5.min.js') }}"></script>
     <script src="{{ asset('assets/libs/formvalidation/dist/js/plugins/AutoFocus.min.js') }}"></script>
+
+    <script>
+        $(document).ready(function() {
+            $('#car-brand-table').DataTable({
+                serverSide: true,
+                ajax: '{{ route('car.list') }}',
+                columns: [{
+                        data: 'name',
+                        name: 'name'
+                    },
+                    {
+                        data: 'logo',
+                        name: 'logo'
+                    },
+                    {
+                        data: 'action',
+                        name: 'action',
+                        orderable: false,
+                        searchable: false
+                    },
+                ]
+            });
+        });
+    </script>
 @endpush

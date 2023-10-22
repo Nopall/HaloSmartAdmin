@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\DataTables\CarBrandDataTable;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Car\CreateCarBrandRequest;
 use App\Services\CarService;
@@ -15,9 +16,9 @@ class CarController extends Controller
         $this->carService = $carService;
     }
 
-    public function index()
+    public function index(CarBrandDataTable $dataTable)
     {
-        return view('car.list');
+        return $dataTable->render('car.list');
     }
 
     public function createCarBrand(CreateCarBrandRequest $request)
