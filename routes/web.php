@@ -17,5 +17,8 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::group(['prefix' => 'master'], function () {
         Route::get('/car', [CarController::class, 'index'])->name('car.list');
+        Route::get('/car/form', [CarController::class, 'formCreateBrand'])->name('car.form-create');
+
+        Route::post('/car/brand', [CarController::class, 'createCarBrand'])->name('car.create-brand');
     });
 });

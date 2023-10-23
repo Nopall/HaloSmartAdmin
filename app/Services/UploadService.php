@@ -6,8 +6,7 @@ use Illuminate\Http\UploadedFile;
 
 class UploadService
 {
-
-    public function upload(UploadedFile $file, $directory = 'uploads', $disk = 'public', $filename = null)
+    public function upload(UploadedFile $file, $directory = '', $filename = null)
     {
         if (!$file->isValid()) {
             return false;
@@ -15,9 +14,14 @@ class UploadService
 
         $filename = $filename ?: $this->generateUniqueFilename($file);
 
-        $path = $file->storeAs($directory, $filename, $disk);
+        $path = $file->storeAs($directory, $filename, 'local');
 
         return $path;
+    }
+
+    public function getPublicUrl($path)
+    {
+        return asset("uploads/{$path}");
     }
 
     protected function generateUniqueFilename(UploadedFile $file)

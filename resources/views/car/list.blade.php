@@ -12,7 +12,7 @@
 
 @section('content')
     <div>
-        <button class="btn btn-md btn-primary"><span class="fa fa-plus"></span> Create</button>
+        <a href="{{ route('car.form-create') }}" class="btn btn-md btn-primary"><span class="fa fa-plus"></span> Create</a>
     </div>
     <div class="card mt-3">
         <div class="card-datatable table-responsive">

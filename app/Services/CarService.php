@@ -18,7 +18,7 @@ class CarService
 
     public function createCarBrand(string $name, UploadedFile $logo)
     {
-        $logoPath = $this->uploadService->upload($logo, 'car_brands', 'public');
+        $logoPath = $this->uploadService->upload($logo, 'car_brands');
 
         $brand = CarBrand::create([
             'name' => $name,

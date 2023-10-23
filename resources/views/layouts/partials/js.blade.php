@@ -9,6 +9,29 @@
 <script src="{{ asset('assets/js/hammer.js') }}"></script>
 <script src="{{ asset('assets/js/menu.js') }}"></script>
 <script src="{{ asset('assets/js/main.js') }}"></script>
-<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+@php
+    $csrfToken = csrf_token();
+@endphp
+
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+<script>
+    const httpClient = {
+        async post(url, data) {
+            try {
+                const response = await axios.post(url, data, {
+                    headers: {
+                        'X-CSRF-TOKEN': '{{ $csrfToken }}'
+                    }
+                });
+                return response.data;
+            } catch (error) {
+                throw error;
+            }
+        }
+    };
+</script>
+
 
 @stack('js')
