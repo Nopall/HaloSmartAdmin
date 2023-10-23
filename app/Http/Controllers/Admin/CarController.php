@@ -41,4 +41,14 @@ class CarController extends Controller
             'data' => $carBrand,
         ]);
     }
+
+    public function deleteCarBrandById(String $id)
+    {
+        $this->carService->deleteCarBrandById($id);
+
+        return response()->json([
+            'status' => true,
+            'message' => 'Car brand deleted successfully.',
+        ]);
+    }
 }

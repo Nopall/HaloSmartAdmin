@@ -20,5 +20,6 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/car/form', [CarController::class, 'formCreateBrand'])->name('car.form-create');
 
         Route::post('/car/brand', [CarController::class, 'createCarBrand'])->name('car.create-brand');
+        Route::delete('/car/brand/{id}', [CarController::class, 'deleteCarBrandById'])->name('car.delete-brand');
     });
 });

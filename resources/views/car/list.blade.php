@@ -60,5 +60,21 @@
                 ]
             });
         });
+
+        async function deleteById(id) {
+            $("#btn-delete-brand").prop("disabled", true);
+            $("#loading-indicator").removeClass("d-none");
+            const response = await httpClient.delete(`/master/car/brand/${id}`);
+            Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: response.message,
+                showConfirmButton: false,
+                timer: 1500
+            });
+            $("#submit-btn").prop("disabled", false);
+            $("#loading-indicator").addClass("d-none");
+            $('#car-brand-table').DataTable().draw();
+        }
     </script>
 @endpush

@@ -27,4 +27,10 @@ class CarService
 
         return $brand;
     }
+
+    public function deleteCarBrandById($id)
+    {
+        $carBrand = CarBrand::where('id', $id);
+        $carBrand->delete();
+    }
 }
