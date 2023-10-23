@@ -33,4 +33,19 @@ class CarService
         $carBrand = CarBrand::where('id', $id);
         $carBrand->delete();
     }
+
+    public function updateCarBrand($id, $name, $logo = null)
+    {
+        $carBrand = CarBrand::findOrFail($id);
+        $carBrand->name = $name;
+
+        if ($logo instanceof UploadedFile) {
+            $logoPath = $this->uploadService->upload($logo, 'car_brands');
+            $carBrand->logo = $logoPath;
+        }
+
+        $carBrand->save();
+
+        return $carBrand;
+    }
 }

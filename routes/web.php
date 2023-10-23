@@ -18,8 +18,10 @@ Route::group(['middleware' => ['auth']], function () {
     Route::group(['prefix' => 'master'], function () {
         Route::get('/car', [CarController::class, 'index'])->name('car.list');
         Route::get('/car/form', [CarController::class, 'formCreateBrand'])->name('car.form-create');
+        Route::get('/car/form/{id}', [CarController::class, 'formEditBrand'])->name('car.form-edit');
 
         Route::post('/car/brand', [CarController::class, 'createCarBrand'])->name('car.create-brand');
         Route::delete('/car/brand/{id}', [CarController::class, 'deleteCarBrandById'])->name('car.delete-brand');
+        Route::post('/car/brand/{id}', [CarController::class, 'updateCarBrand'])->name('car.update-brand');
     });
 });

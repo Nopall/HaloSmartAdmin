@@ -17,10 +17,13 @@
                         <div class="mb-3">
                             <label class="form-label" for="name">Brand name</label>
                             <input type="text" class="form-control" id="name" placeholder="Brand name"
-                                name="name">
+                                name="name" value="{{ $carBrand->name ?? '' }}">
                         </div>
                         <div class="mb-3">
-                            <label class="form-label" for="name">Logo</label>
+                            <label class="form-label" for="name">Logo</label> <br>
+                            @if (isset($carBrand->logo_url))
+                                <img src="{{ $carBrand->logo_url }}" alt="" style="width: 50%">
+                            @endif
                             <div action="/upload" class="dropzone needsclick dz-clickable" id="dropzone-basic"
                                 style="border: 2px dashed #d9dee3;">
                                 <div class="dz-message needsclick">
@@ -28,7 +31,10 @@
                                 </div>
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-primary">Send</button>
+                        <button id="btn-submit-brand" type="submit" class="btn btn-primary">
+                            <div id="loading-indicator" class="spinner-border spinner-border-sm text-default d-none"
+                                role="status"></div> Submit
+                        </button>
                     </form>
                 </div>
             </div>
@@ -68,6 +74,10 @@
                 });
 
                 document.querySelector('#brandForm').addEventListener('submit', async function(event) {
+                    $("#btn-submit-brand").prop("disabled", true);
+                    $("#loading-indicator").removeClass("d-none");
+                    const isEdit = '{{ isset($carBrand) }}'
+
                     event.preventDefault();
 
                     const brandName = document.querySelector('#name').value;
@@ -77,7 +87,23 @@
                     formData.append('name', brandName);
                     formData.append('logo', logoFile);
 
-                    const response = await httpClient.post("{{ route('car.create-brand') }}", formData);
+                    let url = "{{ route('car.create-brand') }}";
+                    @if (isset($carBrand->id))
+                        url = "{{ route('car.update-brand', $carBrand->id) }}";
+                    @endif
+
+                    const response = await httpClient.post(url, formData);
+
+                    Swal.fire({
+                        position: 'top-end',
+                        icon: 'success',
+                        title: response.message,
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                    $("#btn-submit-brand").prop("disabled", false);
+                    $("#loading-indicator").addClass("d-none");
+                    window.location = '{{ route('car.list') }}';
                 });
             }
         })();
