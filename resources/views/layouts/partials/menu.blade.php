@@ -23,6 +23,12 @@
                     </li>
                 </ul>
             </li>
+            <li class="menu-item">
+                <a href="{{ route('user.list') }}" class="menu-link">
+                    <i class="menu-icon tf-icons bx bx-user"></i>
+                    Users
+                </a>
+            </li>
         </ul>
     </div>
 </aside>

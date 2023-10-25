@@ -1,16 +1,13 @@
 @extends('layouts.index')
 
 @section('content')
-    <div>
-        <a href="{{ route('car.form-create') }}" class="btn btn-md btn-primary"><span class="fa fa-plus"></span> Create</a>
-    </div>
     <div class="card mt-3">
         <div class="card-datatable table-responsive">
-            <table id="car-brand-table" class="display table table-striped">
+            <table id="user-table" class="display table table-striped">
                 <thead>
                     <tr>
-                        <th>Brand Name</th>
-                        <th>Logo</th>
+                        <th>Name</th>
+                        <th>Email</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
@@ -22,16 +19,16 @@
 @push('js')
     <script>
         $(document).ready(function() {
-            $('#car-brand-table').DataTable({
+            $('#user-table').DataTable({
                 serverSide: true,
-                ajax: '{{ route('car.list') }}',
+                ajax: '{{ route('user.list') }}',
                 columns: [{
                         data: 'name',
                         name: 'name'
                     },
                     {
-                        data: 'logo',
-                        name: 'logo'
+                        data: 'email',
+                        name: 'email'
                     },
                     {
                         data: 'action',
@@ -44,9 +41,10 @@
         });
 
         async function deleteById(id) {
-            $("#btn-delete-brand").prop("disabled", true);
+            $("#btn-delete").prop("disabled", true);
             $("#loading-indicator").removeClass("d-none");
-            const response = await httpClient.delete(`/master/car/brand/${id}`);
+            const response = await httpClient.delete(`/user/${id}`);
+
             Swal.fire({
                 position: 'top-end',
                 icon: 'success',
@@ -56,7 +54,7 @@
             });
             $("#submit-btn").prop("disabled", false);
             $("#loading-indicator").addClass("d-none");
-            $('#car-brand-table').DataTable().draw();
+            $('#user-table').DataTable().draw();
         }
     </script>
 @endpush

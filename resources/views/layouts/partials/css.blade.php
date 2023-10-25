@@ -14,3 +14,11 @@
 
 <!-- Vendors CSS -->
 <link rel="stylesheet" href="{{ asset('assets/libs/perfect-scrollbar/perfect-scrollbar.css') }}" />
+
+<link rel="stylesheet" href="{{ asset('assets/libs/datatables-bs5/datatables.bootstrap5.css') }}" />
+<link rel="stylesheet" href="{{ asset('assets/libs/datatables-responsive-bs5/responsive.bootstrap5.css') }}" />
+<link rel="stylesheet" href="{{ asset('assets/libs/datatables-checkboxes-jquery/datatables.checkboxes.css') }}" />
+<link rel="stylesheet" href="{{ asset('assets/libs/datatables-buttons-bs5/buttons.bootstrap5.css') }}" />
+<link rel="stylesheet" href="{{ asset('assets/libs/flatpickr/flatpickr.css') }}" />
+<link rel="stylesheet" href="{{ asset('assets/libs/datatables-rowgroup-bs5/rowgroup.bootstrap5.css') }}" />
+<link rel="stylesheet" href="{{ asset('assets/libs/formvalidation/dist/css/formValidation.min.css') }}" />

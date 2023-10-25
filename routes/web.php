@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\CarController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\UserController;
 use Illuminate\Support\Facades\Route;
 
 Route::group(['prefix' => 'auth'], function () {
@@ -23,5 +24,11 @@ Route::group(['middleware' => ['auth']], function () {
         Route::post('/car/brand', [CarController::class, 'createCarBrand'])->name('car.create-brand');
         Route::delete('/car/brand/{id}', [CarController::class, 'deleteCarBrandById'])->name('car.delete-brand');
         Route::post('/car/brand/{id}', [CarController::class, 'updateCarBrand'])->name('car.update-brand');
+    });
+
+    Route::group(['prefix' => 'user'], function () {
+        Route::get('/list', [UserController::class, 'index'])->name('user.list');
+
+        Route::delete('/{id}', [UserController::class, 'deleteUserById'])->name('user.delete');
     });
 });

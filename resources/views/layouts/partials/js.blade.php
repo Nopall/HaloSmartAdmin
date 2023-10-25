@@ -11,6 +11,14 @@
 <script src="{{ asset('assets/js/main.js') }}"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
+<script src="{{ asset('assets/libs/datatables-bs5/datatables-bootstrap5.js') }}"></script>
+<script src="{{ asset('assets/libs/moment/moment.js') }}"></script>
+<script src="{{ asset('assets/libs/flatpickr/flatpickr.js') }}"></script>
+<script src="{{ asset('assets/js/tables-datatables-basic.js') }}"></script>
+<script src="{{ asset('assets/libs/formvalidation/dist/js/FormValidation.min.js') }}"></script>
+<script src="{{ asset('assets/libs/formvalidation/dist/js/plugins/Bootstrap5.min.js') }}"></script>
+<script src="{{ asset('assets/libs/formvalidation/dist/js/plugins/AutoFocus.min.js') }}"></script>
+
 @php
     $csrfToken = csrf_token();
 @endphp
