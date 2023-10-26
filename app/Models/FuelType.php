@@ -6,12 +6,12 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class CarBrand extends Model
+class FuelType extends Model
 {
     use HasFactory;
-    protected $table = "car_brands";
+    protected $table = "fuel_type";
 
-    protected $fillable = ['name', 'logo'];
+    protected $fillable = ['name'];
 
     protected $hidden = ['created_at', 'updated_at'];
 }

@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\RegisterController;
 use App\Http\Controllers\API\CarController;
+use App\Http\Controllers\API\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,4 +26,9 @@ Route::controller(RegisterController::class)->group(function(){
 
 Route::middleware('auth:sanctum')->group( function () {
     Route::resource('car', CarController::class);
+
+    Route::post('/addCar', [UserController::class, 'addCar'])->name('car.addCar');
+    Route::get('/listCar', [UserController::class, 'listCar'])->name('car.listCar');
+
+
 });
