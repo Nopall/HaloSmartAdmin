@@ -5,7 +5,11 @@ namespace App\Http\Controllers\API;
 use Illuminate\Http\Request;
 use App\Http\Controllers\API\BaseController as BaseController;
 use App\Models\Car;
+use App\Models\CarBrand;
 use App\Models\User;
+use App\Models\FuelType;
+use App\Models\History;
+use App\Models\Earning;
 use Validator;
 use App\Http\Resources\CarResource;
 use Illuminate\Http\JsonResponse;
@@ -24,6 +28,24 @@ class UserController extends BaseController
         $cars = Car::with('carBrand', 'fuelType', 'fuelTypeSecondary')->where('user_id', $user->id)->get();
     
         return $this->sendResponse(CarResource::collection($cars), 'Car retrieved successfully.');
+    }
+
+    public function listCarBrand(): JsonResponse
+    {
+        $user = auth()->user();
+
+        $cars = CarBrand::all();
+    
+        return $this->sendResponse(CarResource::collection($cars), 'Car retrieved successfully.');
+    }
+
+    public function listFuelType(): JsonResponse
+    {
+        $user = auth()->user();
+
+        $fuel = FuelType::all();
+    
+        return $this->sendResponse(CarResource::collection($fuel), 'FuelType retrieved successfully.');
     }
     /**
      * Store a newly created resource in storage.
@@ -57,6 +79,38 @@ class UserController extends BaseController
         $car = Car::create($input);
    
         return $this->sendResponse(new CarResource($car), 'Car created successfully.');
+    } 
+
+    public function addEarning(Request $request): JsonResponse
+    {
+        $input = $request->all();
+
+        $user = auth()->user();
+   
+        $validator = Validator::make($input, [
+            'date' => 'required',
+            'time' => 'required',
+            'odometer' => 'required',
+            'earning_amount' => 'required',
+            'earning_type' => 'required',
+            'note' => 'required'
+        ]);
+   
+        if($validator->fails()){
+            return $this->sendError('Validation Error.', $validator->errors());       
+        }
+   
+        $input['user_id'] = $user->id;
+        $input['note_type_id'] = 1;
+        // dd($input);
+        $history = History::create($input);
+
+        if($history->exists){
+            $input['history_id'] = $history->id;
+            $earning = Earning::create($input);
+        }
+   
+        return $this->sendResponse(null, 'Earning created successfully.');
     } 
    
     /**

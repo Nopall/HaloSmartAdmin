@@ -29,6 +29,10 @@ Route::middleware('auth:sanctum')->group( function () {
 
     Route::post('/addCar', [UserController::class, 'addCar'])->name('car.addCar');
     Route::get('/listCar', [UserController::class, 'listCar'])->name('car.listCar');
+    Route::get('/listCarBrand', [UserController::class, 'listCarBrand'])->name('car.listCarBrand');
+    Route::get('/listFuelType', [UserController::class, 'listFuelType'])->name('car.listFuelType');
+
+    Route::post('/addEarning', [UserController::class, 'addEarning'])->name('car.addEarning');
 
 
 });
