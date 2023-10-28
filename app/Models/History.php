@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class History extends Model
 {
     use HasFactory;
-    protected $table = "history";
+    protected $table = "histories";
 
     protected $fillable = ['note_type_id', 'user_id', 'date', 'time', 'odometer'];
 

@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class NoteType extends Model
 {
     use HasFactory;
-    protected $table = "note_type";
+    protected $table = "note_types";
 
     protected $fillable = ['name', 'logo'];
 

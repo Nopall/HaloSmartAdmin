@@ -6,12 +6,12 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class Earning extends Model
+class Charging extends Model
 {
     use HasFactory;
-    protected $table = "earning_details";
+    protected $table = "charging_details";
 
-    protected $fillable = ['history_id', 'earning_amount', 'earning_type_id', 'note'];
+    protected $fillable = ['history_id', 'fuel_id', 'charging_place_id', 'liter', 'price', 'note'];
 
     protected $hidden = ['created_at', 'updated_at'];
 
@@ -20,13 +20,13 @@ class Earning extends Model
         return $this->belongsTo(History::class);
     }
 
-    public function user(): BelongsTo
+    public function fuel(): BelongsTo
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(Fuel::class);
     }
 
-    public function earning(): BelongsTo
+    public function chargingPlace(): BelongsTo
     {
-        return $this->belongsTo(EarningType::class);
+        return $this->belongsTo(ChargingPlace::class);
     }
 }

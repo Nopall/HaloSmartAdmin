@@ -33,6 +33,9 @@ Route::middleware('auth:sanctum')->group( function () {
     Route::get('/listFuelType', [UserController::class, 'listFuelType'])->name('car.listFuelType');
 
     Route::post('/addEarning', [UserController::class, 'addEarning'])->name('car.addEarning');
-
+    Route::post('/addCharging', [UserController::class, 'addCharging'])->name('car.addCharging');
+    Route::post('/addService', [UserController::class, 'addService'])->name('car.addService');
+    Route::post('/addCost', [UserController::class, 'addCost'])->name('car.addCost');
+    Route::post('/addRoute', [UserController::class, 'addRoute'])->name('car.addRoute');
 
 });
